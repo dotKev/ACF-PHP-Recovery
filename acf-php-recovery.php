@@ -43,10 +43,16 @@ function acf_php_recovery_page() {
         }
 
         // Fields
+        $order_no = 0;
         foreach($fieldset['fields'] as $field) {
           if(isset($field['order_no'])) :
+            $order_no = max($order_no,$field['order_no']);
+          else:
+            $field['order_no'] = $order_no++;
+          endif;
           add_post_meta( $post_id, $field['key'], $field, true);
         }
+
 
         // For displaying the success message
         $imported[] = array(
