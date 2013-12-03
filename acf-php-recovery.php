@@ -44,6 +44,7 @@ function acf_php_recovery_page() {
 
         // Fields
         foreach($fieldset['fields'] as $field) {
+          if(isset($field['order_no'])) :
           add_post_meta( $post_id, $field['key'], $field, true);
         }
 
